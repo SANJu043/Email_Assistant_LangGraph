@@ -43,9 +43,9 @@ def traige_email(email_text: str) -> str:
     prompt = f"""
     You are an expert AI Executive Assistant.
     Your goal is to triage incoming emails into specific category
-
+    
     ### CATEGORY DEFINITIONS:
-    1. **IGNORE**: Automated newsletters, marketing, receipts, system logs, or spam.
+    1. **IGNORE**: The Replies i gave (start with Re: subject) or has the same mail as me Automated newsletters, marketing, receipts, system logs, or spam.
     2. **NOTIFY**: informational emails where NO reply is expected (e.g., shipping updates, "FYI" memos, broad company announcements, "OTP"s).
     3. **RESPOND**: Emails that require a reply or action. This INCLUDES:
     - Invitations (Parties, Weddings, Meetings) that need an RSVP.**

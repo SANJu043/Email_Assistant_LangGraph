@@ -208,7 +208,8 @@ def fetch_recent_emails(service, max_results=5):
     """
     results = service.users().messages().list(
         userId="me",
-        maxResults=max_results
+        maxResults=max_results,
+        q="to:me -from:me"
     ).execute()
 
     messages = results.get("messages", [])
