@@ -2,7 +2,7 @@ import json
 from src.gemini import llm_call
 from src.groq_llm import llm_call_1
 from src.tools import add_event, delete_event, send_email, check_availability, find_free_slots
-from src.db import MemoryManager
+from Email_Assistant_Using_LangGraph.src.old_db import MemoryManager
 from datetime import datetime
 from langsmith import traceable
 

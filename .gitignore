@@ -6,3 +6,4 @@ notebooks/.env
 requirements.txt
 src/groq_llm.py
 tests/fix_dataset.py
+data/*
