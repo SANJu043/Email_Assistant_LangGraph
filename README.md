@@ -25,7 +25,7 @@ An autonomous, **ambient email assistant** powered by [LangGraph](https://github
 ```
 Email_Assistant_Using_LangGraph/
 ├── app.py                 # Streamlit UI application
-├── main.py                # CLI entry point
+├── main.py                # CLI entry point (CLI Based agent)
 ├── requirements.txt       # Python dependencies
 ├── src/
 │   ├── auth.py            # Google OAuth2 authentication (Gmail & Calendar)
@@ -35,8 +35,10 @@ Email_Assistant_Using_LangGraph/
 │   ├── tools.py           # Gmail API utilities (fetch, search, send, draft)
 │   ├── db.py              # SQLite database for memory & email tracking
 │   ├── gemini.py          # Gemini LLM client
-│   └── groq_llm.py        # Groq LLM client
+│   ├── groq_llm.py        # Groq LLM client
+|   └── old_db.py          # Memory handling for CLI based agent
 ├── tests/                 # Test cases & dataset upload utilities
+|       fix_dataset.py     # It is for handling any errors while testing using langsmith
 ├── evaluators/            # LLM-as-a-judge evaluation (Groq judge)
 ├── notebooks/             # Jupyter notebooks for prototyping
 └── workflow.png           # LangGraph workflow diagram
@@ -117,6 +119,11 @@ LANGCHAIN_PROJECT="email-assistant"
 
 ---
 
+### 6. Folders
+> - Create a folder data and files email_agent.db and checkpoints.db
+> - Create a folder contents and add credentials.json file in it
+
+
 ## ▶️ Running the Application
 
 ### Streamlit UI (Recommended)
@@ -143,18 +150,12 @@ Fetches recent emails, triages them, and processes them directly in the terminal
 
 ## 🧪 Testing & Evaluation
 
-### Run Tests
-
-```bash
-python -m pytest tests/
-```
-
 ### LLM Evaluation
 
 The project includes an LLM-as-a-judge evaluator using LangSmith:
 
 ```bash
-python tests/langsmith_eval.py
+python -m tests.langsmith_eval
 ```
 
 ---
