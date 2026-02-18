@@ -449,7 +449,7 @@ with tab5:
 
 if auto_fetch:
     # 1. Check if it is time to sync (e.g., every 5 seconds)
-    if time.time() - st.session_state.last_fetch > 7:
+    if time.time() - st.session_state.last_fetch > 20:
         # Use an empty container to show activity without full reload flashing
         # with st.sidebar:
         #     with st.spinner("Checking for new mail..."):
@@ -463,5 +463,5 @@ if auto_fetch:
             
     # 2. Heartbeat: Wait a bit, then rerun to keep the loop going
     # This ensures the app doesn't "stop" and checks again in 2 seconds
-    time.sleep(2)
+    time.sleep(5)
     st.rerun()

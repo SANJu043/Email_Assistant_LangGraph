@@ -3,7 +3,5 @@ notebooks/.env
 .gitignore
 *.json
 *contents/
-requirements.txt
-src/groq_llm.py
-tests/fix_dataset.py
 data/*
+__pycache__/

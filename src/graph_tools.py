@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 import pytz
 import base64
 from email.mime.text import MIMEText
-from typing import List, Optional, Dict, Any
+from typing import List, Optional, Dict, Any, Union
 from langchain_core.tools import tool
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -302,7 +302,7 @@ def check_calendar_availability(start_time: str, end_time: str = None, duration_
 # In src/graph_tools.py
 
 @tool
-def add_calendar_event(summary: str, start_time: str, end_time: str = None, duration_minutes: int = 60, description: str = ""):
+def add_calendar_event(summary: str, start_time: str, end_time: str = None, duration_minutes: Union[int, str] = 60, description: str = ""):
     """
     Adds a new event to the calendar. Checks for duplicates first.
     """
@@ -311,6 +311,12 @@ def add_calendar_event(summary: str, start_time: str, end_time: str = None, dura
     start_iso = _localize_time(start_time)
     if not start_iso: return f"Error: Could not parse start time '{start_time}'."
     start_dt = datetime.fromisoformat(start_iso)
+
+    if isinstance(duration_minutes, str):
+        try:
+            duration_minutes = int(duration_minutes)
+        except ValueError:
+            return f"Invalid duration_minutes value: {duration_minutes}"
     
     # Calculate End Time
     if end_time:
