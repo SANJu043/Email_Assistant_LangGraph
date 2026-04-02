@@ -95,6 +95,7 @@ pip install -r requirements.txt
    ```
    src/contents/credentials.json
    ```
+   (!! First project may not give credentials. So make another and download JSON file).
 6. On first run, a browser window will open for Google OAuth consent. After authorization, a `token.json` will be saved automatically.
 
 ### 5. Configure Environment Variables
